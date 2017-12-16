@@ -62,7 +62,6 @@ func (*MainScene) Name() string {
 	return "main"
 }
 
-
 func main() {
 	korok.PushScene(&MainScene{})
 	options := &korok.Options{
