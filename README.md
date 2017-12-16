@@ -33,6 +33,7 @@ Show how to use `MeshComp` and `Transform`
 ## input control
 
 Show how to use `InputSystem`
+
 ![input](https://github.com/KorokEngine/alpha-demo/blob/master/images/alpha_input.gif)
 
 
