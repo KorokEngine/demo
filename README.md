@@ -21,7 +21,7 @@ Show how to use `TextComp` and `Transform`
 <img src="https://github.com/KorokEngine/alpha-demo/blob/master/images/alpha_text.jpeg" width="500">
 
 ## sprite
-Show how to use `Sprite` and `Transform`
+Show how to use `SpriteComp` and `Transform`
 
 <img src="https://github.com/KorokEngine/alpha-demo/blob/master/images/alpha_sprite.jpeg" width="500">
 
@@ -36,4 +36,5 @@ Show how to use `InputSystem`
 
 ![input](https://github.com/KorokEngine/alpha-demo/blob/master/images/alpha_input.gif)
 
+art from: [learnopengl](https://learnopengl.com/)
 
