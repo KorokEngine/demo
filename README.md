@@ -25,7 +25,7 @@ Show how to use `SpriteComp` and `Transform`
 
 <img src="https://github.com/KorokEngine/alpha-demo/blob/master/images/alpha_sprite.jpeg" width="500">
 
-## simpole mesh 
+## simple mesh 
 Show how to use `MeshComp` and `Transform`
 
 <img src="https://github.com/KorokEngine/alpha-demo/blob/master/images/alpha_mesh.jpeg" width="500">
