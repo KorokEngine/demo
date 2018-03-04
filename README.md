@@ -1,5 +1,5 @@
 # alpha-demo
-demos for korok engine's alpha release (will be deleted later)
+demos for korok engine's beta release
 
 To install korok engine: 
 ```
@@ -7,7 +7,7 @@ go get -insecure korok.io/korok
 ```
 Clone demo project:
 ```
-git clone git@github.com:KorokEngine/alpha-demo.git
+git clone git@github.com:KorokEngine/beta-demo.git
 ```
 Run demo(eg:text):
 
@@ -18,23 +18,61 @@ go run text/main.go
 ## text
 Show how to use `TextComp` and `Transform`
 
-<img src="https://github.com/KorokEngine/alpha-demo/blob/master/images/alpha_text.jpeg" width="500">
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/alpha_text.jpeg" width="500">
 
 ## sprite
 Show how to use `SpriteComp` and `Transform`
 
-<img src="https://github.com/KorokEngine/alpha-demo/blob/master/images/alpha_sprite.jpeg" width="500">
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/alpha_sprite.jpeg" width="500">
 
 ## simple mesh 
 Show how to use `MeshComp` and `Transform`
 
-<img src="https://github.com/KorokEngine/alpha-demo/blob/master/images/alpha_mesh.jpeg" width="500">
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/alpha_mesh.jpeg" width="500">
 
 ## input control
 
 Show how to use `InputSystem`
 
-![input](https://github.com/KorokEngine/alpha-demo/blob/master/images/alpha_input.gif)
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/alpha_input.gif" width="500">
+
+## node system
+
+Show how to use `TransformComp` 
+
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/beta_node.gif" width="500">
+
+## script 
+
+Show how to use `ScriptComp`
+
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/beta_script.gif" width="500">
+
+## particle system
+
+Show how to use `ParticleComp`
+
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/beta_particle.jpeg" width="500">
+
+## sprite animation
+
+Show how to use sprite animation system
+
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/beta_frame.gif" width="500">
+
+## tween animaton
+
+Show how to use tween animation system
+
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/beta_tween.gif" width="500">
+
+## gui
+
+Show how to use korok's imgui 
+
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/beta_gui.gif" width="500">
+
+
 
 art from: [learnopengl](https://learnopengl.com/)
 
