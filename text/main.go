@@ -28,7 +28,7 @@ func (*MainScene) Setup(g *game.Game) {
 	text.SetText("Hello Korok!")
 
 	xf := korok.Transform.NewComp(entity)
-	xf.Position = mgl32.Vec2{30, 100}
+	xf.SetPosition(mgl32.Vec2{30, 100})
 }
 
 func (*MainScene) Update(dt float32) {

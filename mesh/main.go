@@ -47,7 +47,7 @@ func (*MainScene) Setup(g *game.Game) {
 	mesh.TextureId, _ = assets.Texture.GetTexture("assets/face.png")
 
 	xf := korok.Transform.NewComp(entity)
-	xf.Position = mgl32.Vec2{200, 100}
+	xf.SetPosition(mgl32.Vec2{200, 100})
 }
 
 func (*MainScene) Update(dt float32) {

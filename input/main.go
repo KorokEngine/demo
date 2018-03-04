@@ -33,7 +33,7 @@ func (m *MainScene) Setup(g *game.Game) {
 	comp.Height = 50
 
 	faceXF := korok.Transform.NewComp(face)
-	faceXF.Position = mgl32.Vec2{10, 100}
+	faceXF.SetPosition(mgl32.Vec2{10, 100})
 
 	m.face = face
 }
@@ -54,8 +54,8 @@ func (m *MainScene) Update(dt float32) {
 	}
 
 	xf := korok.Transform.Comp(m.face)
-	xf.Position[0] += speed[0]
-	xf.Position[1] += speed[1]
+	p := xf.Position()
+	xf.SetPosition(mgl32.Vec2{p[0]+speed[0], p[1]+speed[1]})
 }
 
 func (*MainScene) Name() string {

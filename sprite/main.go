@@ -20,37 +20,29 @@ func (*MainScene) Preload() {
 func (m *MainScene) Setup(g *game.Game) {
 	// show blocks
 	id, tex := assets.Texture.GetTexture("assets/block.png")
-
-	face := korok.Entity.New()
-	comp := korok.Sprite.NewComp(face, assets.AsSubTexture(id, tex))
-	comp.Width = 50
-	comp.Height = 50
-
-	faceXF := korok.Transform.NewComp(face)
-	faceXF.Position = mgl32.Vec2{10, 100}
-
 	for i := 0; i < 800; i++ {
-		face := korok.Entity.New()
-		c := korok.Sprite.NewComp(face, assets.AsSubTexture(id, tex))
+		entity := korok.Entity.New()
+		c := korok.Sprite.NewComp(entity, assets.AsSubTexture(id, tex))
 		c.Width = 20
 		c.Height = 20
 
-		faceXF := korok.Transform.NewComp(face)
+		xf := korok.Transform.NewComp(entity)
 
 		x := float32(rand.Intn(480))
 		y := float32(rand.Intn(200)) + 120
-		faceXF.Position = mgl32.Vec2{x, y}
+		xf.SetPosition(mgl32.Vec2{x, y})
 	}
 
 	// show face
-	bid, btex := assets.Texture.GetTexture("assets/face.png")
-	block := korok.Entity.New()
-	comp = korok.Sprite.NewComp(block, assets.AsSubTexture(bid, btex))
-	comp.Width = 50
-	comp.Height = 50
+	{
+		id, tex := assets.Texture.GetTexture("assets/face.png")
+		face := korok.Entity.New()
+		sprite := korok.Sprite.NewComp(face, assets.AsSubTexture(id, tex))
+		sprite.SetSize(50, 50)
 
-	blockXF := korok.Transform.NewComp(block)
-	blockXF.Position = mgl32.Vec2{100, 20}
+		xf := korok.Transform.NewComp(face)
+		xf.SetPosition(mgl32.Vec2{100, 20})
+	}
 }
 
 func (m *MainScene) Update(dt float32) {
