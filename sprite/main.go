@@ -4,7 +4,7 @@ import (
 	"korok.io/korok"
 	"korok.io/korok/game"
 	"korok.io/korok/assets"
-	"github.com/go-gl/mathgl/mgl32"
+	"korok.io/korok/math/f32"
 
 	"math/rand"
 )
@@ -19,29 +19,26 @@ func (*MainScene) Preload() {
 
 func (m *MainScene) Setup(g *game.Game) {
 	// show blocks
-	id, tex := assets.Texture.GetTexture("assets/block.png")
+	tex := assets.Texture.Get("assets/block.png")
 	for i := 0; i < 800; i++ {
 		entity := korok.Entity.New()
-		c := korok.Sprite.NewComp(entity, assets.AsSubTexture(id, tex))
-		c.Width = 20
-		c.Height = 20
+		korok.Sprite.NewCompX(entity,tex).SetSize(20, 20)
 
 		xf := korok.Transform.NewComp(entity)
 
 		x := float32(rand.Intn(480))
 		y := float32(rand.Intn(200)) + 120
-		xf.SetPosition(mgl32.Vec2{x, y})
+		xf.SetPosition(f32.Vec2{x, y})
 	}
 
 	// show face
 	{
-		id, tex := assets.Texture.GetTexture("assets/face.png")
+		tex := assets.Texture.Get("assets/face.png")
 		face := korok.Entity.New()
-		sprite := korok.Sprite.NewComp(face, assets.AsSubTexture(id, tex))
-		sprite.SetSize(50, 50)
+		korok.Sprite.NewCompX(face, tex).SetSize(50 ,50)
 
 		xf := korok.Transform.NewComp(face)
-		xf.SetPosition(mgl32.Vec2{100, 20})
+		xf.SetPosition(f32.Vec2{100, 20})
 	}
 }
 

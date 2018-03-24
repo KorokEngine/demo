@@ -1,8 +1,6 @@
 package main
 
 import (
-	"github.com/go-gl/mathgl/mgl32"
-
 	"korok.io/korok/gui"
 	"korok.io/korok/hid/input"
 	"korok.io/korok/assets"
@@ -15,10 +13,10 @@ import (
 )
 
 type MainScene struct {
-	face uint16
+	face gfx.Tex2D
 	slide float32
 
-	normal, pressed *gfx.SubTex
+	normal, pressed gfx.Tex2D
 	showbutton bool
 }
 
@@ -34,18 +32,13 @@ func (m *MainScene) Setup(g *game.Game) {
 	gui.SetFont(assets.Font.GetFont("asc"))
 
 	// image
-	id, _ := assets.Texture.GetTexture("assets/face.png")
-	m.face = id
+	face := assets.Texture.Get("assets/face.png")
+	m.face = face
 
 	// image button background
-	{
-		id, tex := assets.Texture.GetTexture("assets/particle.png")
-		m.pressed = assets.AsSubTexture(id, tex)
-	}
-	{
-		id, tex := assets.Texture.GetTexture("assets/block.png")
-		m.normal = assets.AsSubTexture(id, tex)
-	}
+	m.pressed = assets.Texture.Get("assets/particle.png")
+	m.normal = assets.Texture.Get("assets/block.png")
+
 	// slide default value
 	m.slide = .5
 
@@ -74,7 +67,7 @@ func (m *MainScene) NormalLayout() {
 	gui.Text(5, "Layout", nil)
 
 	gui.Cursor().SetSize(30, 30).To(8)
-	gui.Image(8, m.face, mgl32.Vec4{0,0, 1, 1}, nil)
+	gui.Image(8, m.face, nil)
 
 	if e := gui.Button(9, "NewButton", nil); (e & gui.EventWentDown) != 0 {
 		log.Println("Click New Button")

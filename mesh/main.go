@@ -5,8 +5,7 @@ import (
 	"korok.io/korok/assets"
 	"korok.io/korok/gfx"
 	"korok.io/korok"
-
-	"github.com/go-gl/mathgl/mgl32"
+	"korok.io/korok/math/f32"
 )
 
 
@@ -44,10 +43,10 @@ func (*MainScene) Setup(g *game.Game) {
 	mesh.SetIndex(s_Index)
 	mesh.SetVertex(s_Vertices)
 	mesh.Setup()
-	mesh.TextureId, _ = assets.Texture.GetTexture("assets/face.png")
+	mesh.TextureId = assets.Texture.Get("assets/face.png").Tex()
 
 	xf := korok.Transform.NewComp(entity)
-	xf.SetPosition(mgl32.Vec2{200, 100})
+	xf.SetPosition(f32.Vec2{200, 100})
 }
 
 func (*MainScene) Update(dt float32) {

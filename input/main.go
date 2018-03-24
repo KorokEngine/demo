@@ -6,7 +6,7 @@ import (
 	"korok.io/korok/assets"
 	"korok.io/korok/engi"
 	"korok.io/korok/hid/input"
-
+	"korok.io/korok/math/f32"
 	"github.com/go-gl/mathgl/mgl32"
 )
 
@@ -25,15 +25,11 @@ func (*MainScene) Preload() {
 
 // 输入
 func (m *MainScene) Setup(g *game.Game) {
-	id, tex := assets.Texture.GetTexture("assets/face.png")
+	tex := assets.Texture.Get("assets/face.png")
 
 	face := korok.Entity.New()
-	comp := korok.Sprite.NewComp(face, assets.AsSubTexture(id, tex))
-	comp.Width = 50
-	comp.Height = 50
-
-	faceXF := korok.Transform.NewComp(face)
-	faceXF.SetPosition(mgl32.Vec2{10, 100})
+	korok.Sprite.NewCompX(face, tex).SetSize(50 ,50)
+	korok.Transform.NewComp(face).SetPosition(f32.Vec2{100, 100})
 
 	m.face = face
 }
@@ -54,8 +50,7 @@ func (m *MainScene) Update(dt float32) {
 	}
 
 	xf := korok.Transform.Comp(m.face)
-	p := xf.Position()
-	xf.SetPosition(mgl32.Vec2{p[0]+speed[0], p[1]+speed[1]})
+	xf.MoveBy(speed[0],speed[1])
 }
 
 func (*MainScene) Name() string {

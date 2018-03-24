@@ -1,14 +1,13 @@
 package main
 
 import (
-	"github.com/go-gl/mathgl/mgl32"
-
 	"korok.io/korok"
 	"korok.io/korok/game"
 	"korok.io/korok/assets"
 	"korok.io/korok/engi"
 	"korok.io/korok/anim/tween"
 	"korok.io/korok/anim/tween/ease"
+	"korok.io/korok/math/f32"
 )
 
 type MainScene struct {
@@ -26,7 +25,7 @@ func (m *MainScene) Setup(g *game.Game) {
 	m.en = g.TweenEngine
 
 	// texture
-	id, tex := assets.Texture.GetTexture("assets/face.png")
+	tex := assets.Texture.Get("assets/face.png")
 
 	// ease functions
 	funcs := []ease.Function {
@@ -40,13 +39,13 @@ func (m *MainScene) Setup(g *game.Game) {
 
 	for i := range funcs {
 		entity := korok.Entity.New()
-		korok.Sprite.NewComp(entity, assets.AsSubTexture(id, tex)).SetSize(30, 30)
+		korok.Sprite.NewCompX(entity, tex).SetSize(30, 30)
 		xf := korok.Transform.NewComp(entity)
 		ii := i
 
 		animator := m.en.NewAnimator()
 		animator.SetValue(10, 240).SetDuration(2).SetFunction(funcs[i]).SetRepeat(tween.RepeatInfinite).OnUpdate(func (f, v float32) {
-			xf.SetPosition(mgl32.Vec2{v, 50 + 30 *float32(ii)})
+			xf.SetPosition(f32.Vec2{v, 50 + 30 *float32(ii)})
 		}).Start()
 	}
 }

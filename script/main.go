@@ -6,9 +6,8 @@ import (
 	"korok.io/korok/engi"
 	"korok.io/korok/assets"
 	"korok.io/korok/gfx"
-
-	"github.com/go-gl/mathgl/mgl32"
-	"math"
+	"korok.io/korok/math"
+	"korok.io/korok/math/f32"
 )
 
 type SpinObject struct {
@@ -19,7 +18,7 @@ type SpinObject struct {
 func NewSpinObject() *SpinObject {
 	e := korok.Entity.New()
 	spin := &SpinObject{e,0}
-	korok.Sprite.NewComp(e, nil)
+	korok.Sprite.NewComp(e)
 	korok.Transform.NewComp(e)
 	korok.Script.NewComp(e, spin)
 	return spin
@@ -33,8 +32,8 @@ func (spin *SpinObject) Update(dt float32) {
 	an := dt * 240 / 360 * 6.28
 	a := spin.angle + an
 	spin.angle = a
-	dx := math.Cos(float64(a)) * 60
-	dy := math.Sin(float64(a)) * 60
+	dx := math.Cos(a) * 60
+	dy := math.Sin(a) * 60
 	spin.SetPosition(float32(240 + dx), float32(160 + dy))
 }
 
@@ -42,21 +41,21 @@ func (spin *SpinObject) Destroy() {
 
 }
 
-func (spin *SpinObject) SetTexture(tex *gfx.SubTex) {
+func (spin *SpinObject) SetTexture(tex gfx.Tex2D) {
 	if comp := korok.Sprite.Comp(spin.Entity); comp != nil {
-		comp.SetTexture(tex)
+		comp.SetSprite(tex)
 	}
 }
 
 func (spin *SpinObject) SetSize(w, h float32) {
 	if comp := korok.Sprite.Comp(spin.Entity); comp != nil {
-		comp.Width, comp.Height = w, h
+		comp.SetSize(w, h)
 	}
 }
 
 func (spin *SpinObject) SetPosition(x, y float32) {
 	if comp := korok.Transform.Comp(spin.Entity); comp != nil {
-		comp.SetPosition(mgl32.Vec2{x, y})
+		comp.SetPosition(f32.Vec2{x, y})
 	}
 }
 
@@ -71,7 +70,7 @@ func (*MainScene) Preload() {
 
 func (m *MainScene) Setup(g *game.Game) {
 	spin := NewSpinObject()
-	spin.SetTexture(assets.AsSubTexture(assets.Texture.GetTexture("assets/face.png")))
+	spin.SetTexture(assets.Texture.Get("assets/face.png"))
 	spin.SetSize(30, 30)
 	spin.SetPosition(100, 100)
 	m.spin = spin

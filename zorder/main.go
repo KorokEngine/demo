@@ -8,6 +8,7 @@ import (
 	"korok.io/korok/assets"
 	"korok.io/korok/engi"
 	"korok.io/korok/hid/input"
+	"korok.io/korok/math/f32"
 )
 
 type MainScene struct {
@@ -27,31 +28,31 @@ func (m *MainScene) Setup(g *game.Game) {
 
 	input.RegisterButton("Order", input.Q)
 
-	id, tex := assets.Texture.GetTexture("assets/block.png")
+	tex := assets.Texture.Get("assets/block.png")
 
 	// blocks
 	for i := 0; i < 8; i++ {
 		block := korok.Entity.New()
-		sprite := korok.Sprite.NewComp(block, assets.AsSubTexture(id, tex))
+		sprite := korok.Sprite.NewCompX(block, tex)
 		sprite.SetSize(30, 30)
 		sprite.SetZOrder(int16(i))
 
 		xf := korok.Transform.NewComp(block)
 		x := float32(i * 40)
 		y := float32(200)
-		xf.SetPosition(mgl32.Vec2{x, y})
+		xf.SetPosition(f32.Vec2{x, y})
 	}
 
 	// face
 	{
 		face := korok.Entity.New()
 
-		id, tex := assets.Texture.GetTexture("assets/face.png")
-		sprite := korok.Sprite.NewComp(face, assets.AsSubTexture(id, tex))
+		tex := assets.Texture.Get("assets/face.png")
+		sprite := korok.Sprite.NewCompX(face, tex)
 		sprite.SetSize(50, 50)
 
 		blockXF := korok.Transform.NewComp(face)
-		blockXF.SetPosition(mgl32.Vec2{100, 20})
+		blockXF.SetPosition(f32.Vec2{100, 20})
 
 		m.face = face
 	}
@@ -85,7 +86,7 @@ func (m *MainScene) Update(dt float32) {
 	x := xf.Position()[0] + speed[0]
 	y := xf.Position()[1] + speed[1]
 
-	xf.SetPosition(mgl32.Vec2{x, y})
+	xf.SetPosition(f32.Vec2{x, y})
 }
 
 func (*MainScene) Name() string {

@@ -4,8 +4,7 @@ import (
 	"korok.io/korok"
 	"korok.io/korok/game"
 	"korok.io/korok/assets"
-
-	"github.com/go-gl/mathgl/mgl32"
+	"korok.io/korok/math/f32"
 )
 
 type MainScene struct {
@@ -28,7 +27,7 @@ func (*MainScene) Setup(g *game.Game) {
 	text.SetText("Hello Korok!")
 
 	xf := korok.Transform.NewComp(entity)
-	xf.SetPosition(mgl32.Vec2{30, 100})
+	xf.SetPosition(f32.Vec2{30, 100})
 }
 
 func (*MainScene) Update(dt float32) {

@@ -1,14 +1,13 @@
 package main
 
 import (
-	"github.com/go-gl/mathgl/mgl32"
-
 	"korok.io/korok/game"
 	"korok.io/korok"
 	"korok.io/korok/engi"
 	"korok.io/korok/gfx"
 	"korok.io/korok/assets"
 	"korok.io/korok/hid/input"
+	"korok.io/korok/math/f32"
 )
 
 // A face surround with 4 blocks!
@@ -19,22 +18,21 @@ type Block struct {
 func NewBlock() *Block {
 	e := korok.Entity.New()
 	b := &Block{e}
-	korok.Sprite.NewComp(e, nil)
+	korok.Sprite.NewComp(e)
 	korok.Transform.NewComp(e)
 	return b
 }
 
-func (b *Block) SetTexture(tex *gfx.SubTex) {
-	korok.Sprite.Comp(b.Entity).SetTexture(tex)
+func (b *Block) SetTexture(tex gfx.Tex2D) {
+	korok.Sprite.Comp(b.Entity).SetSprite(tex)
 }
 
 func (b *Block) SetPosition(x, y float32) {
-	korok.Transform.Comp(b.Entity).SetPosition(mgl32.Vec2{x, y})
+	korok.Transform.Comp(b.Entity).SetPosition(f32.Vec2{x, y})
 }
 
 func (f *Block) SetSize(w, h float32) {
-	s := korok.Sprite.Comp(f.Entity)
-	s.Width, s.Height = w, h
+	korok.Sprite.Comp(f.Entity).SetSize(w, h)
 }
 
 
@@ -46,23 +44,21 @@ type Face struct {
 func NewFace() *Face {
 	e := korok.Entity.New()
 	f := &Face{Entity:e}
-	korok.Sprite.NewComp(f.Entity, nil)
+	korok.Sprite.NewComp(f.Entity)
 	korok.Transform.NewComp(f.Entity)
 	return f
 }
 
-func (f *Face) SetTexture(tex *gfx.SubTex) {
-	korok.Sprite.Comp(f.Entity).SetTexture(tex)
+func (f *Face) SetTexture(tex gfx.Tex2D) {
+	korok.Sprite.Comp(f.Entity).SetSprite(tex)
 }
 
 func (f *Face) SetPosition(x, y float32) {
-	korok.Transform.Comp(f.Entity).SetPosition(mgl32.Vec2{x, y})
+	korok.Transform.Comp(f.Entity).SetPosition(f32.Vec2{x, y})
 }
 
-
 func (f *Face) SetSize(w, h float32) {
-	s := korok.Sprite.Comp(f.Entity)
-	s.Width, s.Height = w, h
+	korok.Sprite.Comp(f.Entity).SetSize(w, h)
 }
 
 func (f *Face) LoadBlock(up, down, left, right *Block) {
@@ -73,10 +69,10 @@ func (f *Face) LoadBlock(up, down, left, right *Block) {
 	b4 := korok.Transform.Comp(right.Entity)
 
 	xf.LinkChildren(b1, b2, b3, b4)
-	b1.SetPosition(mgl32.Vec2{0, 100})
-	b2.SetPosition(mgl32.Vec2{0, -100})
-	b3.SetPosition(mgl32.Vec2{-100, 0})
-	b4.SetPosition(mgl32.Vec2{100, 0})
+	b1.SetPosition(f32.Vec2{0, 100})
+	b2.SetPosition(f32.Vec2{0, -100})
+	b3.SetPosition(f32.Vec2{-100, 0})
+	b4.SetPosition(f32.Vec2{100, 0})
 }
 
 
@@ -95,7 +91,7 @@ func (m *MainScene) Preload() {
 }
 
 func (m *MainScene) Setup(g *game.Game) {
-	blockTex := assets.AsSubTexture(assets.Texture.GetTexture("assets/block.png"))
+	blockTex := assets.Texture.Get("assets/block.png")
 	up, down, left, right := NewBlock(), NewBlock(), NewBlock(), NewBlock()
 
 	up.SetTexture(blockTex); up.SetSize(30, 30)
@@ -103,7 +99,7 @@ func (m *MainScene) Setup(g *game.Game) {
 	left.SetTexture(blockTex); left.SetSize(30, 30)
 	right.SetTexture(blockTex); right.SetSize(30, 30)
 
-	faceTex := assets.AsSubTexture(assets.Texture.GetTexture("assets/face.png"))
+	faceTex := assets.Texture.Get("assets/face.png")
 	face := NewFace()
 	face.SetTexture(faceTex)
 
@@ -135,7 +131,7 @@ func (m *MainScene) Update(dt float32) {
 	xf := korok.Transform.Comp(m.face.Entity)
 	p := xf.Position()
 	x, y = x * dt + p[0] , y * dt + p[1]
-	xf.SetPosition(mgl32.Vec2{x, y})
+	xf.SetPosition(f32.Vec2{x, y})
 }
 
 func (m *MainScene) Name() string {
