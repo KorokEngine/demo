@@ -5,7 +5,7 @@ import (
 
 	"korok.io/korok"
 	"korok.io/korok/game"
-	"korok.io/korok/assets"
+	"korok.io/korok/asset"
 	"korok.io/korok/engi"
 	"korok.io/korok/hid/input"
 	"korok.io/korok/math/f32"
@@ -16,8 +16,8 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	assets.Texture.Load("assets/face.png")
-	assets.Texture.Load("assets/block.png")
+	asset.Texture.Load("assets/face.png")
+	asset.Texture.Load("assets/block.png")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
@@ -28,7 +28,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 
 	input.RegisterButton("Order", input.Q)
 
-	tex := assets.Texture.Get("assets/block.png")
+	tex := asset.Texture.Get("assets/block.png")
 
 	// blocks
 	for i := 0; i < 8; i++ {
@@ -47,7 +47,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 	{
 		face := korok.Entity.New()
 
-		tex := assets.Texture.Get("assets/face.png")
+		tex := asset.Texture.Get("assets/face.png")
 		sprite := korok.Sprite.NewCompX(face, tex)
 		sprite.SetSize(50, 50)
 

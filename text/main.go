@@ -3,7 +3,7 @@ package main
 import (
 	"korok.io/korok"
 	"korok.io/korok/game"
-	"korok.io/korok/assets"
+	"korok.io/korok/asset"
 	"korok.io/korok/math/f32"
 )
 
@@ -11,13 +11,13 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	assets.Font.LoadBitmap("dft",
+	asset.Font.LoadBitmap("dft",
 		"assets/font/font.png",
 		"assets/font/font.json")
 }
 
 func (*MainScene) OnEnter(g *game.Game) {
-	font := assets.Font.GetFont("dft")
+	font := asset.Font.GetFont("dft")
 
 	// show "Hello world"
 	entity := korok.Entity.New()

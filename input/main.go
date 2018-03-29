@@ -3,7 +3,7 @@ package main
 import (
 	"korok.io/korok"
 	"korok.io/korok/game"
-	"korok.io/korok/assets"
+	"korok.io/korok/asset"
 	"korok.io/korok/engi"
 	"korok.io/korok/hid/input"
 	"korok.io/korok/math/f32"
@@ -15,7 +15,7 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	assets.Texture.Load("assets/face.png")
+	asset.Texture.Load("assets/face.png")
 
 	input.RegisterButton("up", input.ArrowUp)
 	input.RegisterButton("down", input.ArrowDown)
@@ -25,7 +25,7 @@ func (*MainScene) Load() {
 
 // 输入
 func (m *MainScene) OnEnter(g *game.Game) {
-	tex := assets.Texture.Get("assets/face.png")
+	tex := asset.Texture.Get("assets/face.png")
 
 	face := korok.Entity.New()
 	korok.Sprite.NewCompX(face, tex).SetSize(50 ,50)

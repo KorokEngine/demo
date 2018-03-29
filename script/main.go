@@ -4,7 +4,7 @@ import (
 	"korok.io/korok"
 	"korok.io/korok/game"
 	"korok.io/korok/engi"
-	"korok.io/korok/assets"
+	"korok.io/korok/asset"
 	"korok.io/korok/gfx"
 	"korok.io/korok/math"
 	"korok.io/korok/math/f32"
@@ -65,12 +65,12 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	assets.Texture.Load("assets/face.png")
+	asset.Texture.Load("assets/face.png")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
 	spin := NewSpinObject()
-	spin.SetTexture(assets.Texture.Get("assets/face.png"))
+	spin.SetTexture(asset.Texture.Get("assets/face.png"))
 	spin.SetSize(30, 30)
 	spin.SetPosition(100, 100)
 	m.spin = spin

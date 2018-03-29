@@ -2,7 +2,7 @@ package main
 
 import (
 	"korok.io/korok/game"
-	"korok.io/korok/assets"
+	"korok.io/korok/asset"
 	"korok.io/korok/gfx"
 	"korok.io/korok"
 	"korok.io/korok/math/f32"
@@ -30,7 +30,7 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	assets.Texture.Load("assets/face.png")
+	asset.Texture.Load("assets/face.png")
 }
 
 func (*MainScene) OnEnter(g *game.Game) {
@@ -43,7 +43,7 @@ func (*MainScene) OnEnter(g *game.Game) {
 	mesh.SetIndex(s_Index)
 	mesh.SetVertex(s_Vertices)
 	mesh.Setup()
-	mesh.TextureId = assets.Texture.Get("assets/face.png").Tex()
+	mesh.TextureId = asset.Texture.Get("assets/face.png").Tex()
 
 	xf := korok.Transform.NewComp(entity)
 	xf.SetPosition(f32.Vec2{200, 100})

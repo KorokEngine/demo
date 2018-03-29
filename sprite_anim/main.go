@@ -3,7 +3,7 @@ package main
 import (
 	"korok.io/korok"
 	"korok.io/korok/game"
-	"korok.io/korok/assets"
+	"korok.io/korok/asset"
 	"korok.io/korok/engi"
 	"korok.io/korok/hid/input"
 	"korok.io/korok/gfx"
@@ -18,9 +18,9 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	assets.Texture.Load("assets/face.png")
-	assets.Texture.Load("assets/block.png")
-	assets.Texture.LoadAtlasIndexed("assets/hero.png", 52, 72, 4, 3)
+	asset.Texture.Load("assets/face.png")
+	asset.Texture.Load("assets/block.png")
+	asset.Texture.LoadAtlasIndexed("assets/hero.png", 52, 72, 4, 3)
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
@@ -41,7 +41,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 
 	m.hero = hero
 	{
-		at := assets.Texture.Atlas("assets/hero.png")
+		at := asset.Texture.Atlas("assets/hero.png")
 		frames := [12]gfx.Tex2D{}
 		for i := 0; i < 12; i++ {
 			frames[i], _ = at.GetByIndex(i)

@@ -5,7 +5,7 @@ import (
 	"korok.io/korok"
 	"korok.io/korok/engi"
 	"korok.io/korok/gfx"
-	"korok.io/korok/assets"
+	"korok.io/korok/asset"
 	"korok.io/korok/hid/input"
 	"korok.io/korok/math/f32"
 )
@@ -81,8 +81,8 @@ type MainScene struct {
 }
 
 func (m *MainScene) Load() {
-	assets.Texture.Load("assets/face.png")
-	assets.Texture.Load("assets/block.png")
+	asset.Texture.Load("assets/face.png")
+	asset.Texture.Load("assets/block.png")
 
 	input.RegisterButton("up", input.ArrowUp)
 	input.RegisterButton("down", input.ArrowDown)
@@ -91,7 +91,7 @@ func (m *MainScene) Load() {
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
-	blockTex := assets.Texture.Get("assets/block.png")
+	blockTex := asset.Texture.Get("assets/block.png")
 	up, down, left, right := NewBlock(), NewBlock(), NewBlock(), NewBlock()
 
 	up.SetTexture(blockTex); up.SetSize(30, 30)
@@ -99,7 +99,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 	left.SetTexture(blockTex); left.SetSize(30, 30)
 	right.SetTexture(blockTex); right.SetSize(30, 30)
 
-	faceTex := assets.Texture.Get("assets/face.png")
+	faceTex := asset.Texture.Get("assets/face.png")
 	face := NewFace()
 	face.SetTexture(faceTex)
 

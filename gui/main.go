@@ -3,7 +3,7 @@ package main
 import (
 	"korok.io/korok/gui"
 	"korok.io/korok/hid/input"
-	"korok.io/korok/assets"
+	"korok.io/korok/asset"
 	"korok.io/korok/game"
 	"korok.io/korok/gfx"
 	"korok.io/korok"
@@ -25,23 +25,23 @@ type MainScene struct {
 }
 
 func (m *MainScene) Load() {
-	assets.Texture.Load("assets/face.png")
-	assets.Texture.Load("assets/block.png")
-	assets.Texture.Load("assets/particle.png")
-	assets.Font.LoadBitmap("asc", "assets/font/font.png", "assets/font/font.json")
+	asset.Texture.Load("assets/face.png")
+	asset.Texture.Load("assets/block.png")
+	asset.Texture.Load("assets/particle.png")
+	asset.Font.LoadBitmap("asc", "assets/font/font.png", "assets/font/font.json")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
 	// set font
-	gui.SetFont(assets.Font.GetFont("asc"))
+	gui.SetFont(asset.Font.GetFont("asc"))
 
 	// image
-	face := assets.Texture.Get("assets/face.png")
+	face := asset.Texture.Get("assets/face.png")
 	m.face = face
 
 	// image button background
-	m.pressed = assets.Texture.Get("assets/particle.png")
-	m.normal = assets.Texture.Get("assets/block.png")
+	m.pressed = asset.Texture.Get("assets/particle.png")
+	m.normal = asset.Texture.Get("assets/block.png")
 
 	// slide default value
 	m.slide = .5

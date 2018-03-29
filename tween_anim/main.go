@@ -3,7 +3,7 @@ package main
 import (
 	"korok.io/korok"
 	"korok.io/korok/game"
-	"korok.io/korok/assets"
+	"korok.io/korok/asset"
 	"korok.io/korok/engi"
 	"korok.io/korok/anim/tween"
 	"korok.io/korok/anim/tween/ease"
@@ -18,14 +18,14 @@ type MainScene struct {
 
 func (*MainScene) Load() {
 
-	assets.Texture.Load("assets/face.png")
+	asset.Texture.Load("assets/face.png")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
 	m.en = g.TweenEngine
 
 	// texture
-	tex := assets.Texture.Get("assets/face.png")
+	tex := asset.Texture.Get("assets/face.png")
 
 	// ease functions
 	funcs := []ease.Function {

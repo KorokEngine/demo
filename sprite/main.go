@@ -3,7 +3,7 @@ package main
 import (
 	"korok.io/korok"
 	"korok.io/korok/game"
-	"korok.io/korok/assets"
+	"korok.io/korok/asset"
 	"korok.io/korok/math/f32"
 
 	"math/rand"
@@ -13,13 +13,13 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	assets.Texture.Load("assets/face.png")
-	assets.Texture.Load("assets/block.png")
+	asset.Texture.Load("assets/face.png")
+	asset.Texture.Load("assets/block.png")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
 	// show blocks
-	tex := assets.Texture.Get("assets/block.png")
+	tex := asset.Texture.Get("assets/block.png")
 	for i := 0; i < 800; i++ {
 		entity := korok.Entity.New()
 		korok.Sprite.NewCompX(entity,tex).SetSize(20, 20)
@@ -33,7 +33,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 
 	// show face
 	{
-		tex := assets.Texture.Get("assets/face.png")
+		tex := asset.Texture.Get("assets/face.png")
 		face := korok.Entity.New()
 		korok.Sprite.NewCompX(face, tex).SetSize(50 ,50)
 
