@@ -13,12 +13,12 @@ type MainScene struct {
 
 }
 
-func (*MainScene) Preload() {
+func (*MainScene) Load() {
 	assets.Texture.Load("assets/particle.png")
 	assets.Texture.Load("assets/block.png")
 }
 
-func (*MainScene) Setup(g *game.Game) {
+func (*MainScene) OnEnter(g *game.Game) {
 	cfg := &effect.GravityConfig{
 		Config:effect.Config {
 			Max:1024,
@@ -45,16 +45,14 @@ func (*MainScene) Update(dt float32) {
 
 }
 
-func (*MainScene) Name() string {
-	return "main"
+func (*MainScene) OnExit() {
 }
 
 func main() {
-	korok.PushScene(&MainScene{})
 	options := &korok.Options{
 		Title:"ParticleSystem",
 		Width:480,
 		Height:320,
 	}
-	korok.Run(options)
+	korok.Run(options, &MainScene{})
 }

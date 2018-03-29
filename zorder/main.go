@@ -15,12 +15,12 @@ type MainScene struct {
 	face engi.Entity
 }
 
-func (*MainScene) Preload() {
+func (*MainScene) Load() {
 	assets.Texture.Load("assets/face.png")
 	assets.Texture.Load("assets/block.png")
 }
 
-func (m *MainScene) Setup(g *game.Game) {
+func (m *MainScene) OnEnter(g *game.Game) {
 	input.RegisterButton("up", input.ArrowUp)
 	input.RegisterButton("down", input.ArrowDown)
 	input.RegisterButton("left", input.ArrowLeft)
@@ -89,17 +89,15 @@ func (m *MainScene) Update(dt float32) {
 	xf.SetPosition(f32.Vec2{x, y})
 }
 
-func (*MainScene) Name() string {
-	return "main"
+func (*MainScene) OnExit() {
 }
 
 func main() {
-	korok.PushScene(&MainScene{})
 	// Run game
 	options := &korok.Options{
 		Title: "Hello, Korok Engine",
 		Width: 480,
 		Height:320,
 	}
-	korok.Run(options)
+	korok.Run(options, &MainScene{})
 }

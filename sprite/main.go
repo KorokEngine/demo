@@ -12,12 +12,12 @@ import (
 type MainScene struct {
 }
 
-func (*MainScene) Preload() {
+func (*MainScene) Load() {
 	assets.Texture.Load("assets/face.png")
 	assets.Texture.Load("assets/block.png")
 }
 
-func (m *MainScene) Setup(g *game.Game) {
+func (m *MainScene) OnEnter(g *game.Game) {
 	// show blocks
 	tex := assets.Texture.Get("assets/block.png")
 	for i := 0; i < 800; i++ {
@@ -45,17 +45,15 @@ func (m *MainScene) Setup(g *game.Game) {
 func (m *MainScene) Update(dt float32) {
 }
 
-func (*MainScene) Name() string {
-	return "main"
+func (*MainScene) OnExit() {
 }
 
 func main() {
-	korok.PushScene(&MainScene{})
 	// Run game
 	options := &korok.Options{
 		Title: "Sprite Rendering",
 		Width: 480,
 		Height:320,
 	}
-	korok.Run(options)
+	korok.Run(options, &MainScene{})
 }

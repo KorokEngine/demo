@@ -29,11 +29,11 @@ type MainScene struct {
 
 }
 
-func (*MainScene) Preload() {
+func (*MainScene) Load() {
 	assets.Texture.Load("assets/face.png")
 }
 
-func (*MainScene) Setup(g *game.Game) {
+func (*MainScene) OnEnter(g *game.Game) {
 	// show mesh comp
 	entity := korok.Entity.New()
 
@@ -52,17 +52,15 @@ func (*MainScene) Setup(g *game.Game) {
 func (*MainScene) Update(dt float32) {
 }
 
-func (*MainScene) Name() string {
-	return "main"
+func (*MainScene) OnExit() {
 }
 
 func main() {
-	korok.PushScene(&MainScene{})
 	// Run game
 	options := &korok.Options{
 		Title: "Simple Mesh Rendering",
 		Width: 480,
 		Height:320,
 	}
-	korok.Run(options)
+	korok.Run(options, &MainScene{})
 }

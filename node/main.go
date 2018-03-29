@@ -80,7 +80,7 @@ type MainScene struct {
 	face *Face
 }
 
-func (m *MainScene) Preload() {
+func (m *MainScene) Load() {
 	assets.Texture.Load("assets/face.png")
 	assets.Texture.Load("assets/block.png")
 
@@ -90,7 +90,7 @@ func (m *MainScene) Preload() {
 	input.RegisterButton("right", input.ArrowRight)
 }
 
-func (m *MainScene) Setup(g *game.Game) {
+func (m *MainScene) OnEnter(g *game.Game) {
 	blockTex := assets.Texture.Get("assets/block.png")
 	up, down, left, right := NewBlock(), NewBlock(), NewBlock(), NewBlock()
 
@@ -134,16 +134,14 @@ func (m *MainScene) Update(dt float32) {
 	xf.SetPosition(f32.Vec2{x, y})
 }
 
-func (m *MainScene) Name() string {
-	return "main"
+func (m *MainScene) OnExit() {
 }
 
 func main() {
-	korok.PushScene(&MainScene{})
 	options := &korok.Options{
 		Title:"Node System",
 		Width:480,
 		Height:320,
 	}
-	korok.Run(options)
+	korok.Run(options, &MainScene{})
 }

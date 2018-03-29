@@ -17,13 +17,13 @@ type MainScene struct {
 	as *frame.Engine
 }
 
-func (*MainScene) Preload() {
+func (*MainScene) Load() {
 	assets.Texture.Load("assets/face.png")
 	assets.Texture.Load("assets/block.png")
 	assets.Texture.LoadAtlasIndexed("assets/hero.png", 52, 72, 4, 3)
 }
 
-func (m *MainScene) Setup(g *game.Game) {
+func (m *MainScene) OnEnter(g *game.Game) {
 	// get animation system...
 	m.as = g.SpriteEngine
 
@@ -94,17 +94,15 @@ func (m *MainScene) Update(dt float32) {
 	xf.SetPosition(f32.Vec2{x, y})
 }
 
-func (*MainScene) Name() string {
-	return "main"
+func (*MainScene) OnExit() {
 }
 
 func main() {
-	korok.PushScene(&MainScene{})
 	// Run game
 	options := &korok.Options{
 		Title: "Hello, Korok Engine",
 		Width: 480,
 		Height:320,
 	}
-	korok.Run(options)
+	korok.Run(options, &MainScene{})
 }

@@ -16,12 +16,12 @@ type MainScene struct {
 	en *tween.Engine
 }
 
-func (*MainScene) Preload() {
+func (*MainScene) Load() {
 
 	assets.Texture.Load("assets/face.png")
 }
 
-func (m *MainScene) Setup(g *game.Game) {
+func (m *MainScene) OnEnter(g *game.Game) {
 	m.en = g.TweenEngine
 
 	// texture
@@ -53,17 +53,15 @@ func (m *MainScene) Setup(g *game.Game) {
 func (m *MainScene) Update(dt float32) {
 }
 
-func (*MainScene) Name() string {
-	return "main"
+func (*MainScene) OnExit() {
 }
 
 func main() {
-	korok.PushScene(&MainScene{})
 	// Run game
 	options := &korok.Options{
 		Title: "Hello, Korok Engine",
 		Width: 480,
 		Height:320,
 	}
-	korok.Run(options)
+	korok.Run(options, &MainScene{})
 }

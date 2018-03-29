@@ -14,7 +14,7 @@ type MainScene struct {
 	face engi.Entity
 }
 
-func (*MainScene) Preload() {
+func (*MainScene) Load() {
 	assets.Texture.Load("assets/face.png")
 
 	input.RegisterButton("up", input.ArrowUp)
@@ -24,7 +24,7 @@ func (*MainScene) Preload() {
 }
 
 // 输入
-func (m *MainScene) Setup(g *game.Game) {
+func (m *MainScene) OnEnter(g *game.Game) {
 	tex := assets.Texture.Get("assets/face.png")
 
 	face := korok.Entity.New()
@@ -53,16 +53,14 @@ func (m *MainScene) Update(dt float32) {
 	xf.MoveBy(speed[0],speed[1])
 }
 
-func (*MainScene) Name() string {
-	return "main"
+func (*MainScene) OnExit() {
 }
 
 func main() {
-	korok.PushScene(&MainScene{})
 	options := &korok.Options{
 		Title:"Input Controller",
 		Width:480,
 		Height:320,
 	}
-	korok.Run(options)
+	korok.Run(options, &MainScene{})
 }
