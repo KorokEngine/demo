@@ -3,7 +3,7 @@ demos for korok engine's beta release
 
 To install korok engine: 
 ```
-go get -insecure korok.io/korok
+go get korok.io/korok
 ```
 Clone demo project:
 ```
