@@ -52,8 +52,8 @@ func (m *MainScene) OnEnter(g *game.Game) {
 }
 
 func (m *MainScene) Update(dt float32) {
-	m.Widget()
-	//m.Layout()
+	//m.Widget()
+	m.Layout()
 }
 
 func (m *MainScene) OnExit() {
@@ -64,61 +64,64 @@ func (m *MainScene) OnExit() {
 
 func (m *MainScene) Widget() {
 
-	gui.Cursor().SetGravity(.5, .5).To(1)
-	gui.BeginVertical(1)
+	gui.Move(100, 60)
+	gui.Layout(1, func(g *gui.Group, p *gui.Params) {
+		gui.Text(2, "SomeText", nil)
 
-	gui.Text(2, "SomeText", nil)
+		p.SetSize(30, 30).To(3)
+		gui.Image(3, m.face, nil)
 
-	gui.Cursor().SetSize(30, 30).To(3)
-	gui.Image(3, m.face, nil)
-
-	if e := gui.Button(4, "NewButton", nil); (e & gui.EventWentDown) != 0 {
-		log.Println("Click New Button")
-		m.showbutton = true
-	}
-	if m.showbutton {
-		if e := gui.Button(5, "Dismiss", nil); (e & gui.EventWentDown) != 0 {
-			log.Println("Click Old Button")
-			m.showbutton = false
+		if e := gui.Button(4, "NewButton", nil); (e & gui.EventWentDown) != 0 {
+			log.Println("Click New Button")
+			m.showbutton = true
 		}
-	}
+		if m.showbutton {
+			if e := gui.Button(5, "Dismiss", nil); (e & gui.EventWentDown) != 0 {
+				log.Println("Click Old Button")
+				m.showbutton = false
+			}
+		}
 
-	// image button
-	gui.Cursor().SetSize(30, 30).To(6)
-	gui.ImageButton(6, m.normal, m.pressed, nil)
+		// image button
+		p.SetSize(30, 30).To(6)
+		gui.ImageButton(6, m.normal, m.pressed, nil)
 
-	gui.Cursor().SetSize(120, 9).To(7)
-	gui.Slider(7, &m.slide, nil)
+		p.SetSize(120, 9).To(7)
+		gui.Slider(7, &m.slide, nil)
+	}, 0, 0, gui.Vertical)
 
-	gui.EndVertical()
 	// gui.DefaultContext().Layout.Dump()
 }
 
 // show how to layout ui-element
 func (m *MainScene) Layout() {
-	gui.Cursor().SetGravity(.5, 0).To(1)
-	gui.Text(1, "Top", nil)
+	gui.Move(0, 0)
+	gui.Layout(0, func(g *gui.Group, p *gui.Params) {
+		p.SetGravity(.5, 0).To(1)
+		gui.Text(1, "Top", nil)
 
-	gui.Cursor().SetGravity(.5, 1).To(2)
-	gui.Text(2, "Bottom", nil)
+		p.SetGravity(.5, 1).To(2)
+		gui.Text(2, "Bottom", nil)
 
-	gui.Cursor().SetGravity(0, .5).To(3)
-	gui.Text(3, "Left", nil)
+		p.SetGravity(0, .5).To(3)
+		gui.Text(3, "Left", nil)
 
-	gui.Cursor().SetGravity(1, .5).To(4)
-	gui.Text(4, "Right", nil)
+		p.SetGravity(1, .5).To(4)
+		gui.Text(4, "Right", nil)
 
-	gui.Cursor().SetGravity(.5, .5).To(5)
-	gui.BeginHorizontal(5)
-	gui.Text(6, "Horizontal", nil)
+		p.SetGravity(.5, .5).To(5)
 
-	gui.BeginVertical(7)
-	gui.Text(8, "Vertical", nil)
-	gui.Text(9, "Layout", nil)
-	gui.EndVertical()
+		gui.Layout(5, func(g *gui.Group, p *gui.Params) {
+			gui.Text(6, "Horizontal", nil)
 
-	gui.Text(10, "Layout", nil)
-	gui.EndHorizontal()
+			gui.Layout(7, func(g *gui.Group, p *gui.Params) {
+				gui.Text(8, "Vertical", nil)
+				gui.Text(9, "Layout", nil)
+			}, 0, 0, gui.Vertical)
+
+			gui.Text(10, "Layout", nil)
+		}, 0, 0, gui.Horizontal)
+	}, 480 - 16, 320 - 16, gui.OverLay)
 }
 
 var b bool
