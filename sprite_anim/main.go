@@ -18,9 +18,7 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	asset.Texture.Load("assets/face.png")
-	asset.Texture.Load("assets/block.png")
-	asset.Texture.LoadAtlasIndexed("assets/hero.png", 52, 72, 4, 3)
+	asset.Texture.LoadAtlasIndexed("hero.png", 52, 72, 4, 3)
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
@@ -41,7 +39,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 
 	m.hero = hero
 	{
-		at := asset.Texture.Atlas("assets/hero.png")
+		at := asset.Texture.Atlas("hero.png")
 		frames := [12]gfx.Tex2D{}
 		for i := 0; i < 12; i++ {
 			frames[i], _ = at.GetByIndex(i)

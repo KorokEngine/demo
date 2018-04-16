@@ -81,8 +81,8 @@ type MainScene struct {
 }
 
 func (m *MainScene) Load() {
-	asset.Texture.Load("assets/face.png")
-	asset.Texture.Load("assets/block.png")
+	asset.Texture.Load("face.png")
+	asset.Texture.Load("block.png")
 
 	input.RegisterButton("up", input.ArrowUp)
 	input.RegisterButton("down", input.ArrowDown)
@@ -91,7 +91,7 @@ func (m *MainScene) Load() {
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
-	blockTex := asset.Texture.Get("assets/block.png")
+	blockTex := asset.Texture.Get("block.png")
 	up, down, left, right := NewBlock(), NewBlock(), NewBlock(), NewBlock()
 
 	up.SetTexture(blockTex); up.SetSize(30, 30)
@@ -99,7 +99,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 	left.SetTexture(blockTex); left.SetSize(30, 30)
 	right.SetTexture(blockTex); right.SetSize(30, 30)
 
-	faceTex := asset.Texture.Get("assets/face.png")
+	faceTex := asset.Texture.Get("face.png")
 	face := NewFace()
 	face.SetTexture(faceTex)
 

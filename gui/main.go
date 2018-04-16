@@ -10,6 +10,7 @@ import (
 
 	"log"
 	"fmt"
+	"korok.io/korok/gui/auto"
 )
 
 // Note:
@@ -25,23 +26,23 @@ type MainScene struct {
 }
 
 func (m *MainScene) Load() {
-	asset.Texture.Load("assets/face.png")
-	asset.Texture.Load("assets/block.png")
-	asset.Texture.Load("assets/particle.png")
-	asset.Font.LoadBitmap("asc", "assets/font/font.png", "assets/font/font.json")
+	asset.Texture.Load("face.png")
+	asset.Texture.Load("block.png")
+	asset.Texture.Load("particle.png")
+	asset.Font.LoadBitmap("font1", "font.png", "font.json")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
 	// set font
-	gui.SetFont(asset.Font.GetFont("asc"))
+	gui.SetFont(asset.Font.GetFont("font1"))
 
 	// image
-	face := asset.Texture.Get("assets/face.png")
+	face := asset.Texture.Get("face.png")
 	m.face = face
 
 	// image button background
-	m.pressed = asset.Texture.Get("assets/particle.png")
-	m.normal = asset.Texture.Get("assets/block.png")
+	m.pressed = asset.Texture.Get("particle.png")
+	m.normal = asset.Texture.Get("block.png")
 
 	// slide default value
 	m.slide = .5
@@ -52,8 +53,8 @@ func (m *MainScene) OnEnter(g *game.Game) {
 }
 
 func (m *MainScene) Update(dt float32) {
-	//m.Widget()
-	m.Layout()
+	m.Widget()
+	//m.Layout()
 }
 
 func (m *MainScene) OnExit() {
@@ -65,30 +66,31 @@ func (m *MainScene) OnExit() {
 func (m *MainScene) Widget() {
 
 	gui.Move(100, 60)
-	gui.Layout(1, func(g *gui.Group, p *gui.Params) {
-		gui.Text(2, "SomeText", nil)
 
-		p.SetSize(30, 30).To(3)
-		gui.Image(3, m.face, nil)
+	// draw text
+	gui.Text(2, gui.Rect{0, 0, 0, 0}, "SomeText", nil)
 
-		if e := gui.Button(4, "NewButton", nil); (e & gui.EventWentDown) != 0 {
-			log.Println("Click New Button")
-			m.showbutton = true
+	// draw image
+	gui.Image(3, gui.Rect{0, 30, 30, 30}, m.face, nil)
+
+	// draw image button
+	gui.ImageButton(6, gui.Rect{50, 30, 30, 30}, m.normal, m.pressed, nil)
+
+
+	// draw button
+	if e := gui.Button(4, gui.Rect{0, 100, 0, 0},"NewButton", nil); (e & gui.EventWentDown) != 0 {
+		log.Println("Click New Button")
+		m.showbutton = true
+	}
+	if m.showbutton {
+		if e := gui.Button(5, gui.Rect{0, 150, 0, 0},"Dismiss", nil); (e & gui.EventWentDown) != 0 {
+			log.Println("Click Old Button")
+			m.showbutton = false
 		}
-		if m.showbutton {
-			if e := gui.Button(5, "Dismiss", nil); (e & gui.EventWentDown) != 0 {
-				log.Println("Click Old Button")
-				m.showbutton = false
-			}
-		}
+	}
 
-		// image button
-		p.SetSize(30, 30).To(6)
-		gui.ImageButton(6, m.normal, m.pressed, nil)
-
-		p.SetSize(120, 9).To(7)
-		gui.Slider(7, &m.slide, nil)
-	}, 0, 0, gui.Vertical)
+	// draw slider
+	gui.Slider(7, gui.Rect{100, 0, 120, 10},  &m.slide, nil)
 
 	// gui.DefaultContext().Layout.Dump()
 }
@@ -96,32 +98,25 @@ func (m *MainScene) Widget() {
 // show how to layout ui-element
 func (m *MainScene) Layout() {
 	gui.Move(0, 0)
-	gui.Layout(0, func(g *gui.Group, p *gui.Params) {
-		p.SetGravity(.5, 0).To(1)
-		gui.Text(1, "Top", nil)
+	auto.Layout(0, func(g *auto.Group) {
+		auto.Text(1, "Top", nil, auto.Gravity(.5, 0))
+		auto.Text(2, "Bottom", nil, auto.Gravity(.5, 1))
+		auto.Text(3, "Left", nil, auto.Gravity(0, .5))
+		auto.Text(4, "Right", nil, auto.Gravity(1, .5))
 
-		p.SetGravity(.5, 1).To(2)
-		gui.Text(2, "Bottom", nil)
+		// p.SetGravity(.5, .5).To(5)
 
-		p.SetGravity(0, .5).To(3)
-		gui.Text(3, "Left", nil)
+		auto.Layout(5, func(g *auto.Group) {
+			auto.Text(6, "Horizontal", nil, nil)
 
-		p.SetGravity(1, .5).To(4)
-		gui.Text(4, "Right", nil)
+			auto.Layout(7, func(g *auto.Group) {
+				auto.Text(8, "Vertical", nil, nil)
+				auto.Text(9, "Layout", nil, nil)
+			}, 0, 0, auto.Vertical)
 
-		p.SetGravity(.5, .5).To(5)
-
-		gui.Layout(5, func(g *gui.Group, p *gui.Params) {
-			gui.Text(6, "Horizontal", nil)
-
-			gui.Layout(7, func(g *gui.Group, p *gui.Params) {
-				gui.Text(8, "Vertical", nil)
-				gui.Text(9, "Layout", nil)
-			}, 0, 0, gui.Vertical)
-
-			gui.Text(10, "Layout", nil)
-		}, 0, 0, gui.Horizontal)
-	}, 480 - 16, 320 - 16, gui.OverLay)
+			auto.Text(10, "Layout", nil, nil)
+		}, 0, 0, auto.Horizontal)
+	}, 480 - 16, 320 - 16, auto.OverLay)
 }
 
 var b bool

@@ -30,7 +30,7 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	asset.Texture.Load("assets/face.png")
+	asset.Texture.Load("face.png")
 }
 
 func (*MainScene) OnEnter(g *game.Game) {
@@ -43,7 +43,7 @@ func (*MainScene) OnEnter(g *game.Game) {
 	mesh.SetIndex(s_Index)
 	mesh.SetVertex(s_Vertices)
 	mesh.Setup()
-	mesh.TextureId = asset.Texture.Get("assets/face.png").Tex()
+	mesh.TextureId = asset.Texture.Get("face.png").Tex()
 
 	xf := korok.Transform.NewComp(entity)
 	xf.SetPosition(f32.Vec2{200, 100})

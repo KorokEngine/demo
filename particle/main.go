@@ -14,8 +14,7 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	asset.Texture.Load("assets/particle.png")
-	asset.Texture.Load("assets/block.png")
+	asset.Texture.Load("particle.png")
 }
 
 func (*MainScene) OnEnter(g *game.Game) {
@@ -36,7 +35,7 @@ func (*MainScene) OnEnter(g *game.Game) {
 	gravity := korok.Entity.New()
 	gParticle := korok.ParticleSystem.NewComp(gravity)
 	gParticle.SetSimulator(effect.NewGravitySimulator(cfg))
-	gParticle.SetTexture(asset.Texture.Get("assets/particle.png"))
+	gParticle.SetTexture(asset.Texture.Get("particle.png"))
 	gXf := korok.Transform.NewComp(gravity)
 	gXf.SetPosition(f32.Vec2{240, 160})
 }

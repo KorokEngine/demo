@@ -13,13 +13,13 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	asset.Texture.Load("assets/face.png")
-	asset.Texture.Load("assets/block.png")
+	asset.Texture.Load("face.png")
+	asset.Texture.Load("block.png")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
 	// show blocks
-	tex := asset.Texture.Get("assets/block.png")
+	tex := asset.Texture.Get("block.png")
 	for i := 0; i < 800; i++ {
 		entity := korok.Entity.New()
 		korok.Sprite.NewCompX(entity,tex).SetSize(20, 20)
@@ -33,7 +33,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 
 	// show face
 	{
-		tex := asset.Texture.Get("assets/face.png")
+		tex := asset.Texture.Get("face.png")
 		face := korok.Entity.New()
 		korok.Sprite.NewCompX(face, tex).SetSize(50 ,50)
 

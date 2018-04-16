@@ -15,7 +15,7 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	asset.Texture.Load("assets/face.png")
+	asset.Texture.Load("face.png")
 
 	input.RegisterButton("up", input.ArrowUp)
 	input.RegisterButton("down", input.ArrowDown)
@@ -25,7 +25,7 @@ func (*MainScene) Load() {
 
 // 输入
 func (m *MainScene) OnEnter(g *game.Game) {
-	tex := asset.Texture.Get("assets/face.png")
+	tex := asset.Texture.Get("face.png")
 
 	face := korok.Entity.New()
 	korok.Sprite.NewCompX(face, tex).SetSize(50 ,50)

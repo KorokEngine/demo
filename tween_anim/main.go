@@ -18,14 +18,14 @@ type MainScene struct {
 
 func (*MainScene) Load() {
 
-	asset.Texture.Load("assets/face.png")
+	asset.Texture.Load("face.png")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
 	m.en = g.TweenEngine
 
 	// texture
-	tex := asset.Texture.Get("assets/face.png")
+	tex := asset.Texture.Get("face.png")
 
 	// ease functions
 	funcs := []ease.Function {

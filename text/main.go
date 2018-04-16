@@ -11,13 +11,12 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	asset.Font.LoadBitmap("dft",
-		"assets/font/font.png",
-		"assets/font/font.json")
+	asset.Font.LoadBitmap("font1", "font.png", "font.json")
+	asset.Font.LoadTrueType("font2", "OCRAEXT.TTF")
 }
 
 func (*MainScene) OnEnter(g *game.Game) {
-	font := asset.Font.GetFont("dft")
+	font := asset.Font.GetFont("font1")
 
 	// show "Hello world"
 	entity := korok.Entity.New()

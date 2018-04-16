@@ -65,12 +65,12 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	asset.Texture.Load("assets/face.png")
+	asset.Texture.Load("face.png")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
 	spin := NewSpinObject()
-	spin.SetTexture(asset.Texture.Get("assets/face.png"))
+	spin.SetTexture(asset.Texture.Get("face.png"))
 	spin.SetSize(30, 30)
 	spin.SetPosition(100, 100)
 	m.spin = spin

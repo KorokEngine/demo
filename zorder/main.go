@@ -16,8 +16,8 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	asset.Texture.Load("assets/face.png")
-	asset.Texture.Load("assets/block.png")
+	asset.Texture.Load("face.png")
+	asset.Texture.Load("block.png")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
@@ -28,7 +28,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 
 	input.RegisterButton("Order", input.Q)
 
-	tex := asset.Texture.Get("assets/block.png")
+	tex := asset.Texture.Get("block.png")
 
 	// blocks
 	for i := 0; i < 8; i++ {
@@ -47,7 +47,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 	{
 		face := korok.Entity.New()
 
-		tex := asset.Texture.Get("assets/face.png")
+		tex := asset.Texture.Get("face.png")
 		sprite := korok.Sprite.NewCompX(face, tex)
 		sprite.SetSize(50, 50)
 
