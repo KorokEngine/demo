@@ -34,6 +34,7 @@ func (*MainScene) Load() {
 }
 
 func (*MainScene) OnEnter(g *game.Game) {
+	tex2d := asset.Texture.Get("face.png")
 	// show mesh comp
 	entity := korok.Entity.New()
 
@@ -43,7 +44,7 @@ func (*MainScene) OnEnter(g *game.Game) {
 	mesh.SetIndex(s_Index)
 	mesh.SetVertex(s_Vertices)
 	mesh.Setup()
-	mesh.TextureId = asset.Texture.Get("face.png").Tex()
+	mesh.SetTexture(tex2d.Tex())
 
 	xf := korok.Transform.NewComp(entity)
 	xf.SetPosition(f32.Vec2{200, 100})

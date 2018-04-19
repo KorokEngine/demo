@@ -16,7 +16,7 @@ func (*MainScene) Load() {
 }
 
 func (*MainScene) OnEnter(g *game.Game) {
-	font := asset.Font.GetFont("font1")
+	font,_ := asset.Font.GetFont("font1")
 
 	// show "Hello world"
 	entity := korok.Entity.New()
@@ -26,7 +26,7 @@ func (*MainScene) OnEnter(g *game.Game) {
 	text.SetText("Hello Korok!")
 
 	xf := korok.Transform.NewComp(entity)
-	xf.SetPosition(f32.Vec2{30, 100})
+	xf.SetPosition(f32.Vec2{240, 160})
 }
 
 func (*MainScene) Update(dt float32) {

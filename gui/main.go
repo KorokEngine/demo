@@ -33,8 +33,11 @@ func (m *MainScene) Load() {
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
+	fnt, _ := asset.Font.GetFont("font1")
+
 	// set font
-	gui.SetFont(asset.Font.GetFont("font1"))
+	gui.SetFont(fnt)
+	gui.DebugDraw = true
 
 	// image
 	face := asset.Texture.Get("face.png")
@@ -53,15 +56,13 @@ func (m *MainScene) OnEnter(g *game.Game) {
 }
 
 func (m *MainScene) Update(dt float32) {
-	m.Widget()
-	//m.Layout()
+	//m.Widget()
+	m.Layout()
 }
 
 func (m *MainScene) OnExit() {
 	return
 }
-
-
 
 func (m *MainScene) Widget() {
 
@@ -97,16 +98,15 @@ func (m *MainScene) Widget() {
 
 // show how to layout ui-element
 func (m *MainScene) Layout() {
-	gui.Move(0, 0)
+	gui.Move(-4, -4)
+	auto.Define("layout")
 	auto.Layout(0, func(g *auto.Group) {
 		auto.Text(1, "Top", nil, auto.Gravity(.5, 0))
 		auto.Text(2, "Bottom", nil, auto.Gravity(.5, 1))
 		auto.Text(3, "Left", nil, auto.Gravity(0, .5))
 		auto.Text(4, "Right", nil, auto.Gravity(1, .5))
 
-		// p.SetGravity(.5, .5).To(5)
-
-		auto.Layout(5, func(g *auto.Group) {
+		auto.LayoutX(5, func(g *auto.Group) {
 			auto.Text(6, "Horizontal", nil, nil)
 
 			auto.Layout(7, func(g *auto.Group) {
@@ -115,8 +115,8 @@ func (m *MainScene) Layout() {
 			}, 0, 0, auto.Vertical)
 
 			auto.Text(10, "Layout", nil, nil)
-		}, 0, 0, auto.Horizontal)
-	}, 480 - 16, 320 - 16, auto.OverLay)
+		}, auto.Gravity(.5, .5), auto.Horizontal)
+	}, 480-12, 320-12, auto.OverLay)
 }
 
 var b bool

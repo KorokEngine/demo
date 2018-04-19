@@ -39,7 +39,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 
 	m.hero = hero
 	{
-		at := asset.Texture.Atlas("hero.png")
+		at, _ := asset.Texture.Atlas("hero.png")
 		frames := [12]gfx.Tex2D{}
 		for i := 0; i < 12; i++ {
 			frames[i], _ = at.GetByIndex(i)
