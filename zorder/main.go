@@ -32,7 +32,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 	input.RegisterButton("Order", input.Q)
 
 	tex := asset.Texture.Get("block.png")
-	fnt, _ := asset.Font.GetFont("font1")
+	fnt, _ := asset.Font.Get("font1")
 
 	// face variable z-order 0-9
 	{
@@ -96,8 +96,8 @@ func (m *MainScene) OnEnter(g *game.Game) {
 		gParticle := korok.ParticleSystem.NewComp(gravity)
 		gParticle.SetSimulator(effect.NewGravitySimulator(cfg))
 		gParticle.SetTexture(asset.Texture.Get("particle.png"))
-		gXf := korok.Transform.NewComp(gravity)
-		gXf.SetPosition(f32.Vec2{40, 160})
+		xf := korok.Transform.NewComp(gravity)
+		xf.SetPosition(f32.Vec2{40, 160})
 	}
 
 }

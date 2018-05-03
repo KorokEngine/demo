@@ -36,8 +36,8 @@ func (*MainScene) OnEnter(g *game.Game) {
 	gParticle := korok.ParticleSystem.NewComp(gravity)
 	gParticle.SetSimulator(effect.NewGravitySimulator(cfg))
 	gParticle.SetTexture(asset.Texture.Get("particle.png"))
-	gXf := korok.Transform.NewComp(gravity)
-	gXf.SetPosition(f32.Vec2{240, 160})
+	xf := korok.Transform.NewComp(gravity)
+	xf.SetPosition(f32.Vec2{240, 160})
 }
 
 func (*MainScene) Update(dt float32) {

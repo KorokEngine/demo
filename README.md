@@ -12,7 +12,8 @@ git clone git@github.com:KorokEngine/beta-demo.git
 Run demo(eg:text):
 
 ```
-go run text/main.go
+$ cd text
+$ go run main.go
 ```
 
 ## text

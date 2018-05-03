@@ -16,7 +16,7 @@ func (*MainScene) Load() {
 }
 
 func (*MainScene) OnEnter(g *game.Game) {
-	font,_ := asset.Font.GetFont("font1")
+	font,_ := asset.Font.Get("font1")
 
 	// show "Hello world"
 	entity := korok.Entity.New()
