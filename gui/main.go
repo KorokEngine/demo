@@ -33,7 +33,7 @@ func (m *MainScene) Load() {
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
-	fnt, _ := asset.Font.GetFont("font1")
+	fnt, _ := asset.Font.Get("font1")
 
 	// set font
 	gui.SetFont(fnt)
@@ -56,8 +56,8 @@ func (m *MainScene) OnEnter(g *game.Game) {
 }
 
 func (m *MainScene) Update(dt float32) {
-	//m.Widget()
-	m.Layout()
+	m.Widget()
+	//m.Layout()
 }
 
 func (m *MainScene) OnExit() {

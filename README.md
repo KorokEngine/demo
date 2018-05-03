@@ -12,7 +12,8 @@ git clone git@github.com:KorokEngine/beta-demo.git
 Run demo(eg:text):
 
 ```
-go run text/main.go
+$ cd text
+$ go run main.go
 ```
 
 ## text
@@ -34,7 +35,7 @@ Show how to use `MeshComp` and `Transform`
 
 Show how to use `InputSystem`
 
-<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/alpha_input.gif" width="500">
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/v1_input.gif" width="500">
 
 ## node system
 
@@ -52,25 +53,25 @@ Show how to use `ScriptComp`
 
 Show how to use `ParticleComp`
 
-<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/beta_particle.jpeg" width="500">
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/v1_snow.jpeg" width="500">
 
 ## sprite animation
 
 Show how to use sprite animation system
 
-<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/beta_frame.gif" width="500">
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/v1_sprite_anim.gif" width="500">
 
 ## tween animaton
 
 Show how to use tween animation system
 
-<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/beta_tween.gif" width="500">
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/v1_tween.gif" width="500">
 
 ## gui
 
 Show how to use korok's imgui 
 
-<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/beta_gui.gif" width="500">
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/v1_gui.jpeg" width="500">
 
 
 
