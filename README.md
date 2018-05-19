@@ -53,7 +53,7 @@ Show how to use `ScriptComp`
 
 Show how to use `ParticleComp`
 
-<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/v1_snow.jpeg" width="500">
+<img src="https://github.com/KorokEngine/beta-demo/blob/master/images/v1_snow.gif" width="500">
 
 ## sprite animation
 
