@@ -37,6 +37,9 @@ func (m *MainScene) OnEnter(g *game.Game) {
 	korok.Sprite.NewComp(hero).SetSize(50 ,50)
 	korok.Transform.NewComp(hero).SetPosition(f32.Vec2{240, 160})
 
+	fb := korok.Flipbook.NewComp(hero)
+	fb.SetRate(.2)
+
 	m.hero = hero
 	{
 		at, _ := asset.Texture.Atlas("hero.png")
@@ -51,7 +54,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 	}
 
 	// default
-	m.as.Of(m.hero).Rate(.2).Play("hero.down")
+	fb.Play("hero.down")
 }
 
 func (m *MainScene) Update(dt float32) {
@@ -59,16 +62,16 @@ func (m *MainScene) Update(dt float32) {
 
 	// 根据上下左右，执行不同的帧动画
 	if input.Button("up").JustPressed() {
-		m.as.Of(m.hero).Rate(.2).Play("hero.top")
+		korok.Flipbook.Comp(m.hero).Play("hero.top")
 	}
 	if input.Button("down").JustPressed() {
-		m.as.Of(m.hero).Rate(.2).Play("hero.down")
+		korok.Flipbook.Comp(m.hero).Play("hero.down")
 	}
 	if input.Button("left").JustPressed() {
-		m.as.Of(m.hero).Rate(.2).Play("hero.left")
+		korok.Flipbook.Comp(m.hero).Play("hero.left")
 	}
 	if input.Button("right").JustPressed() {
-		m.as.Of(m.hero).Rate(.2).Play("hero.right")
+		korok.Flipbook.Comp(m.hero).Play("hero.right")
 	}
 
 	scalar := float32(3)
