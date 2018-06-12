@@ -15,9 +15,9 @@ type Block struct {
 	engi.Entity
 }
 
-func NewBlock() *Block {
+func NewBlock() Block {
 	e := korok.Entity.New()
-	b := &Block{e}
+	b := Block{e}
 	korok.Sprite.NewComp(e)
 	korok.Transform.NewComp(e)
 	return b
@@ -31,14 +31,14 @@ func (b *Block) SetPosition(x, y float32) {
 	korok.Transform.Comp(b.Entity).SetPosition(f32.Vec2{x, y})
 }
 
-func (f *Block) SetSize(w, h float32) {
-	korok.Sprite.Comp(f.Entity).SetSize(w, h)
+func (b *Block) SetSize(w, h float32) {
+	korok.Sprite.Comp(b.Entity).SetSize(w, h)
 }
 
 
 type Face struct {
 	engi.Entity
-	up, down, left, right *Block
+	up, down, left, right Block
 }
 
 func NewFace() *Face {
@@ -61,7 +61,7 @@ func (f *Face) SetSize(w, h float32) {
 	korok.Sprite.Comp(f.Entity).SetSize(w, h)
 }
 
-func (f *Face) LoadBlock(up, down, left, right *Block) {
+func (f *Face) LoadBlock(up, down, left, right Block) {
 	xf := korok.Transform.Comp(f.Entity)
 	b1 := korok.Transform.Comp(up.Entity)
 	b2 := korok.Transform.Comp(down.Entity)

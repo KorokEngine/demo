@@ -38,8 +38,8 @@ func (m *MainScene) OnEnter(g *game.Game) {
 	gui.SetFont(font)
 	gui.SetVirtualResolution(320, 0)
 
-	m.wav = asset.Audio.Get("birds.wav")
-	m.ogg = asset.Audio.Get("ambient.ogg")
+	m.wav, _ = asset.Audio.Get("birds.wav")
+	m.ogg, _ = asset.Audio.Get("ambient.ogg")
 }
 
 func (m *MainScene) Update(dt float32) {

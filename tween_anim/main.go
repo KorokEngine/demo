@@ -5,25 +5,21 @@ import (
 	"korok.io/korok/game"
 	"korok.io/korok/asset"
 	"korok.io/korok/engi"
-	"korok.io/korok/anim/tween"
-	"korok.io/korok/anim/tween/ease"
+	"korok.io/korok/anim/ween"
+	"korok.io/korok/math/ease"
+	"korok.io/korok/anim"
 	"korok.io/korok/math/f32"
 )
 
 type MainScene struct {
 	hero engi.Entity
-	g *game.Game
-	en *tween.Engine
 }
 
 func (*MainScene) Load() {
-
 	asset.Texture.Load("face.png")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
-	m.en = g.TweenEngine
-
 	// texture
 	tex := asset.Texture.Get("face.png")
 
@@ -40,13 +36,8 @@ func (m *MainScene) OnEnter(g *game.Game) {
 	for i := range funcs {
 		entity := korok.Entity.New()
 		korok.Sprite.NewCompX(entity, tex).SetSize(30, 30)
-		xf := korok.Transform.NewComp(entity)
-		ii := i
-
-		animator := m.en.NewAnimator()
-		animator.SetValue(10, 240).SetDuration(2).SetFunction(funcs[i]).SetRepeat(tween.RepeatInfinite).OnUpdate(func (f, v float32) {
-			xf.SetPosition(f32.Vec2{v, 50 + 30 *float32(ii)})
-		}).Start()
+		korok.Transform.NewComp(entity).SetPosition(f32.Vec2{0, 50 + 30 *float32(i)})
+		anim.MoveX(entity, 10, 240).SetFunction(funcs[i]).SetRepeat(ween.RepeatInfinite, ween.Restart).SetDuration(2).Forward()
 	}
 }
 
