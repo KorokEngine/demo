@@ -9,6 +9,7 @@ import (
 	"korok.io/korok/math/f32"
 	"korok.io/korok/effect"
 	"korok.io/korok/math"
+	"korok.io/korok/gfx/font"
 )
 
 type MainScene struct {
@@ -20,7 +21,7 @@ func (*MainScene) Load() {
 	asset.Texture.Load("block.png")
 	asset.Texture.Load("particle.png")
 	// font
-	asset.Font.LoadTrueType("font1", "OCRAEXT.TTF")
+	asset.Font.LoadTrueType("font1", "OCRAEXT.TTF", font.ASCII(64))
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {

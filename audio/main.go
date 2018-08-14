@@ -9,6 +9,7 @@ import (
 
 	"log"
 	"fmt"
+	"korok.io/korok/gfx/font"
 )
 
 func main() {
@@ -27,7 +28,7 @@ type MainScene struct {
 }
 
 func (*MainScene) Load() {
-	asset.Font.LoadTrueType("ttf", "OCRAEXT.TTF")
+	asset.Font.LoadTrueType("ttf", "OCRAEXT.TTF", font.ASCII(24))
 
 	asset.Audio.Load("birds.wav", true)
 	asset.Audio.Load("ambient.ogg", true)

@@ -29,6 +29,7 @@ func (m *MainScene) Load() {
 	asset.Texture.Load("face.png")
 	asset.Texture.Load("block.png")
 	asset.Texture.Load("particle.png")
+	asset.Texture.Load("press.png")
 	asset.Font.LoadBitmap("font1", "font.png", "font.json")
 }
 
@@ -44,7 +45,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 	m.face = face
 
 	// image button background
-	m.pressed = asset.Texture.Get("particle.png")
+	m.pressed = asset.Texture.Get("press.png")
 	m.normal = asset.Texture.Get("block.png")
 
 	// slide default value

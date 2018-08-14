@@ -5,6 +5,7 @@ import (
 	"korok.io/korok/game"
 	"korok.io/korok/asset"
 	"korok.io/korok/math/f32"
+	"korok.io/korok/gfx/font"
 )
 
 type MainScene struct {
@@ -12,7 +13,7 @@ type MainScene struct {
 
 func (*MainScene) Load() {
 	asset.Font.LoadBitmap("font1", "font.png", "font.json")
-	asset.Font.LoadTrueType("font2", "OCRAEXT.TTF")
+	asset.Font.LoadTrueType("font2", "OCRAEXT.TTF", font.ASCII(24))
 }
 
 func (*MainScene) OnEnter(g *game.Game) {
