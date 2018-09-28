@@ -10,6 +10,7 @@ import (
 	"korok.io/korok/effect"
 	"korok.io/korok/math"
 	"korok.io/korok/gfx/font"
+	"korok.io/korok/gfx"
 )
 
 type MainScene struct {
@@ -68,7 +69,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 		text := korok.Text.NewComp(hello)
 		text.SetFont(fnt)
 		text.SetFontSize(18)
-		text.SetColor(0xFF0000FF)
+		text.SetColor(gfx.Red)
 		text.SetText("Hello World")
 		text.SetZOrder(6)
 
