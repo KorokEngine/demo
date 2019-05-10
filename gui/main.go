@@ -99,7 +99,6 @@ func (m *MainScene) Widget() {
 
 // show how to layout ui-element
 func (m *MainScene) Layout() {
-	gui.Move(-4, -4)
 	auto.Define("layout")
 	auto.Layout(0, func(g *auto.Group) {
 		auto.Text(1, "Top", nil, auto.Gravity(.5, 0))
@@ -113,11 +112,12 @@ func (m *MainScene) Layout() {
 			auto.Layout(7, func(g *auto.Group) {
 				auto.Text(8, "Vertical", nil, nil)
 				auto.Text(9, "Layout", nil, nil)
+				auto.Button(11, "click me", nil, nil)
 			}, 0, 0, auto.Vertical)
 
 			auto.Text(10, "Layout", nil, nil)
 		}, auto.Gravity(.5, .5), auto.Horizontal)
-	}, 480-12, 320-12, auto.OverLay)
+	}, 480, 320, auto.OverLay)
 }
 
 var b bool
