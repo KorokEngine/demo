@@ -8,6 +8,7 @@ import (
 	"korok.io/korok/hid/input"
 	"korok.io/korok/gfx"
 	"korok.io/korok/math/f32"
+	"korok.io/korok/anim/frame"
 )
 
 type MainScene struct {
@@ -36,6 +37,7 @@ func (m *MainScene) OnEnter(g *game.Game) {
 
 	fb := korok.Flipbook.NewComp(hero)
 	fb.SetRate(.2)
+	fb.SetLoop(true, frame.Restart)
 
 	m.hero = hero
 	{
